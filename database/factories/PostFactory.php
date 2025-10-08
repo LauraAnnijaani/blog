@@ -23,7 +23,7 @@ class PostFactory extends Factory
         }
         $image = null;
         if(rand(0, 9)) {
-            $image = 'https://picsum.photos/seed/' . fake()->unique()->uuid . '/540/480';
+
         }
 
         return [
