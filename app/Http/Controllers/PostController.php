@@ -17,7 +17,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::latest()->paginate();
+        $posts = Post::with('images', 'user')->withCount('comments')->latest()->paginate();
         return view('posts.index', compact('posts'));
     }
 
