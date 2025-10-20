@@ -31,8 +31,7 @@ class PublicController extends Controller
         $posts = $tag->posts()->with('images', 'user', 'tags')->withCount('comments', 'likes')->latest()->simplePaginate(16);
         return view('welcome', compact('posts'));
     }
-
-     public function category(Category $category) {
+    public function category(Category $category) {
         $posts = $category->posts()->with('images', 'user', 'tags')->withCount('comments', 'likes')->latest()->simplePaginate(16);
         return view('welcome', compact('posts'));
     }

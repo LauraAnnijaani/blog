@@ -8,7 +8,7 @@
 
                 @if ($post->images->count() === 1)
                     <figure>
-                        <img src="{{ $post->image->first()->url }}" />
+                        <img src="{{ $post->images->first()->url }}" />
                     </figure>
                 @elseif($post->images->count() > 1)
                     <div class="carousel rounded-box">
@@ -29,7 +29,9 @@
                     <p class="text-neutral-content"><b>Likes:</b> {{ $post->likes_count }}</p>
                     <div class="text-neutral-content">
                         <b>Category</b>
-                        <div class="badge badge-info">{{ $post->category->name }}</div>
+                        <a href="{{route('category', ['category' => $post->category])}}">
+                            <div class="badge badge-info">{{ $post->category->name }}</div>
+                        </a>
                     </div>
                     <div class="flex flex-wrap gap-1">
                         @foreach ($post->tags as $tag)
@@ -46,7 +48,6 @@
                             @else
                                 <button class='btn btn-secondery'>Like</button>
                             @endif
-
                         </form>
                         <a href="{{ route('post', ['post' => $post]) }}" class="btn btn-primary">Read more</a>
                     </div>
