@@ -1,5 +1,5 @@
 @extends('partials.layout')
 @section('title', 'Home page')
 @section('content')
-    <button class="btn btn-primary">Primary</button>
+    <h1 class="text-3xl">Page 2</h1>
 @endsection
