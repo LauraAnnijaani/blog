@@ -4,14 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class PublicController extends Controller
 {
     public function index() {
-        $page = request()->query('page', 1); // p1 => 0, p2 => 16, p3 => 32, p4 => 48, p5 => 64
-        $offset = ($page - 1) * 16;
-        $posts = Post::take(16)->skip($offset)->get();
+        $posts = Post::simplePaginate(16);
         return view('welcome', compact('posts'));
+    }
+
+    public function post(Post $post) {
+        return view('post', compact('post'));
     }
 
     public function page1() {

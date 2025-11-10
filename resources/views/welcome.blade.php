@@ -1,6 +1,7 @@
 @extends('partials.layout')
 @section('title', 'Home page')
 @section('content')
+    {{ $posts->links() }}
     <div class="grid grid-cols-4 gap-2">
         @foreach ($posts as $post)
             <div class="card bg-base-300 shadow-sm">
@@ -11,10 +12,11 @@
                     <h2 class="card-title">{{ $post->title }}</h2>
                     <p>{{ $post->snippet }}</p>
                     <div class="card-actions justify-end">
-                        <button class="btn btn-primary">Read more</button>
+                        <a href="{{ route('post', ['post' => $post]) }}" class="btn btn-primary">Read more</a>
                     </div>
                 </div>
             </div>
         @endforeach
     </div>
+    {{ $posts->links() }}
 @endsection
