@@ -11,6 +11,8 @@
                 <div class="card-body">
                     <h2 class="card-title">{{ $post->title }}</h2>
                     <p>{{ $post->snippet }}</p>
+                    <p class="text-neutral-content">{{ $post->user->name }}</p>
+                    <p class="text-neutral-content">{{ $post->created_at->diffForHumans() }}</p>
                     <div class="card-actions justify-end">
                         <a href="{{ route('post', ['post' => $post]) }}" class="btn btn-primary">Read more</a>
                     </div>
