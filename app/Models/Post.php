@@ -13,15 +13,13 @@ class Post extends Model
 
     protected $fillable = ['title', 'body'];
 
-    protected function snippet(): Attribute
-    {
+    protected function snippet(): Attribute {
         return Attribute::get(function () {
             return explode("\n\n", $this->body)[0];
         });
     }
 
-    protected function displayBody(): Attribute
-    {
+    protected function displayBody(): Attribute {
         return Attribute::get(function () {
             return nl2br(htmlspecialchars($this->body));
         });
@@ -29,5 +27,9 @@ class Post extends Model
 
      public function user() {
         return $this->belongsTo(User::class);
+    }
+
+    public function image() {
+        return $this->hasOne(Image::class);
     }
 }

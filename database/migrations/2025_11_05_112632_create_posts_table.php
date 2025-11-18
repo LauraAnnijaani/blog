@@ -18,7 +18,6 @@ return new class extends Migration
             $table->text('body')->nullable();
             // $table->unsignedBigInteger('user_id');
             // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('image')->nullable();
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
         });

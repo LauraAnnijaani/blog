@@ -21,17 +21,12 @@ class PostFactory extends Factory
         if (rand(0, 9)) {
             $updated = $created;
         }
-        $image = null;
-        if (rand(0, 9)) {
-            $image = 'https://picsum.photos/seed/' . fake()->unique()->uuid . '/640/480';
-        }
 
         return [
             'title' => fake()->sentence,
             'body' => fake()->paragraphs(6, true),
             'created_at' => $created,
             'updated_at' => $updated,
-            'image' => $image,
         ];
     }
 }
