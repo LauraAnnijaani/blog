@@ -1,6 +1,6 @@
 @if ($paginator->hasPages())
     <nav>
-        <ul class="join mb-3">
+        <ul class="join mb-3 mt-3">
             {{-- Previous Page Link --}}
             @if ($paginator->onFirstPage())
                 <li class="join-item">
