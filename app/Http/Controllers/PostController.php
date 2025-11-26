@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
+use App\Models\Image;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
 
 class PostController extends Controller
 {
@@ -35,6 +38,11 @@ class PostController extends Controller
         // $post->user_id = Auth::user()->id;
         $post->user()->associate(Auth::user());
         $post->save();
+        $image = new Image();
+        $image->path = $request->file('image')->store('', ['disk' => 'public']);
+        $image->post()->associate($post);
+        $image->save();
+
         return redirect()->route('posts.index');
     }
 

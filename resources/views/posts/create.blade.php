@@ -3,19 +3,28 @@
 @section('content')
     <div class="card bg-base-300">
         <div class="card-body">
-            <form action="{{route('posts.store')}}" method="POST">
+            <form action="{{route('posts.store')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <fieldset class="fieldset">
                     <legend class="fieldset-legend">Title</legend>
-                    <input value="{{ old('title') }}" name="title" type="text" class="input w-full @error('title') input-error @enderror" placeholder="Title" />
+                    <input value="{{ old('title') }}" name="title" type="text"
+                        class="input w-full @error('title') input-error @enderror" placeholder="Title" />
                     @error('title')
                         <p class="label text-error">{{ $message }}</p>
                     @enderror
                 </fieldset>
                 <fieldset class="fieldset">
                     <legend class="fieldset-legend">Content</legend>
-                    <textarea name="body" class="textarea h-96 w-full @error('body') textarea-error @enderror" placeholder="Write something cool...">{{ old('body') }}</textarea>
+                    <textarea name="body" class="textarea h-96 w-full @error('body') textarea-error @enderror"
+                        placeholder="Write something cool...">{{ old('body') }}</textarea>
                     @error('body')
+                        <p class="label text-error">{{ $message }}</p>
+                    @enderror
+                </fieldset>
+                <fieldset class="fieldset">
+                    <legend class="fieldset-legend">Image</legend>
+                    <input name="image" type="file" class="file-input w-full @error('image') file-input-error @enderror" />
+                    @error('image')
                         <p class="label text-error">{{ $message }}</p>
                     @enderror
                 </fieldset>

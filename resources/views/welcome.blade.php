@@ -8,13 +8,13 @@
 
                 @if ($post->images->count() === 1)
                     <figure>
-                        <img src="{{ $post->images->first()->path }}" />
+                        <img src="{{ $post->images->first()->url }}" />
                     </figure>
                 @elseif($post->images->count() > 1)
                     <div class="carousel rounded-box">
                         @foreach ($post->images as $image)
                             <div class="carousel-item w-full">
-                                <img src="{{ $image->path }}" />
+                                <img src="{{ $image->url }}" />
                             </div>
                         @endforeach
                     </div>
