@@ -22,9 +22,9 @@
                     @enderror
                 </fieldset>
                 <fieldset class="fieldset">
-                    <legend class="fieldset-legend">Image</legend>
-                    <input name="image" type="file" class="file-input w-full @error('image') file-input-error @enderror" />
-                    @error('image')
+                    <legend class="fieldset-legend">Images</legend>
+                    <input name="images[]" multiple type="file" class="file-input w-full @error('images.*') file-input-error @enderror" />
+                    @error('images.*')
                         <p class="label text-error">{{ $message }}</p>
                     @enderror
                 </fieldset>
