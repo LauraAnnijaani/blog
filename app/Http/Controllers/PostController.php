@@ -38,10 +38,12 @@ class PostController extends Controller
         // $post->user_id = Auth::user()->id;
         $post->user()->associate(Auth::user());
         $post->save();
-        $image = new Image();
-        $image->path = $request->file('image')->store('', ['disk' => 'public']);
-        $image->post()->associate($post);
-        $image->save();
+        if($request->file('image')) {
+            $image = new Image();
+            $image->path = $request->file('image')->store('', ['disk' => 'public']);
+            $image->post()->associate($post);
+            $image->save();
+        }
 
         return redirect()->route('posts.index');
     }
