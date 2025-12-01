@@ -25,6 +25,7 @@
                     <p>{{ $post->snippet }}</p>
                     <p class="text-neutral-content">{{ $post->user->name }}</p>
                     <p class="text-neutral-content">{{ $post->created_at->diffForHumans() }}</p>
+                    <p class="text-neutral-content"><b>Comments:</b> {{ $post->comments_count }}</p>
                     <div class="card-actions justify-end">
                         <a href="{{ route('post', ['post' => $post]) }}" class="btn btn-primary">Read more</a>
                     </div>
