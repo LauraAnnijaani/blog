@@ -18,14 +18,20 @@
         <div class="card-body">
             <h2 class="card-title">{{ $post->title }}</h2>
             <p>{!! $post->displayBody !!}</p>
-            <p class="text-neutral-content">{{ $post->user->name }}</p>
+            @if ($post->user)
+                <a href="{{ route('user.posts', ['user' => $post->user->id]) }}" class="font-bold text-primary">
+                    {{ $post->user->name }}
+                </a>
+            @else
+                Unknown
+            @endif
             <p class="text-neutral-content">{{ $post->created_at->diffForHumans() }}</p>
             <div class="card-actions justify-end">
 
             </div>
         </div>
     </div>
-    @foreach($post->comments()->latest()->get() as $comment)
+    @foreach ($post->comments()->latest()->get() as $comment)
         <div class="card bg-base-300 shadow-sm mt-3">
             <div class="card-body">
                 <p>{{ $comment->body }}</p>

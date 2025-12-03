@@ -32,7 +32,15 @@
                 <a href="{{ route('posts.index') }}" class="btn btn-secondary">Back to Posts</a>
             </div>
             <fieldset class="fieldset">
-                <p><strong>Author:</strong> {{ $post->user->name ?? 'Unknown' }}</p>
+                <p><strong>Author:</strong>
+                    @if ($post->user)
+                        <a href="{{ route('user.posts', ['user' => $post->user->id]) }}" class="font-bold text-primary">
+                            {{ $post->user->name }}
+                        </a>
+                    @else
+                        Unknown
+                    @endif
+                </p>
                 <p><strong>Created at:</strong> {{ $post->created_at->format('d M Y H:i') }}</p>
                 <p><strong>Last updated:</strong> {{ $post->updated_at->format('d M Y H:i') }}</p>
             </fieldset>

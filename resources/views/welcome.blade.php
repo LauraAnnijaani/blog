@@ -23,7 +23,13 @@
                 <div class="card-body">
                     <h2 class="card-title">{{ $post->title }}</h2>
                     <p>{{ $post->snippet }}</p>
-                    <p class="text-neutral-content">{{ $post->user->name }}</p>
+                    @if ($post->user)
+                        <a href="{{ route('user.posts', $post->user) }}" class="font-bold text-primary">
+                            {{ $post->user->name }}
+                        </a>
+                    @else
+                        Unknown
+                    @endif
                     <p class="text-neutral-content">{{ $post->created_at->diffForHumans() }}</p>
                     <p class="text-neutral-content"><b>Comments:</b> {{ $post->comments_count }}</p>
                     <p class="text-neutral-content"><b>Likes:</b> {{ $post->likes_count }}</p>
@@ -32,7 +38,7 @@
                         @if ($post->category)
                             <a href="{{ route('category', $post->category->id) }}">
                                 {{ $post->category->name }}
-                                                        <div class="badge badge-info">{{ $post->category->name }}</div>
+                                <div class="badge badge-info">{{ $post->category->name }}</div>
                             </a>
                         @endif
 
