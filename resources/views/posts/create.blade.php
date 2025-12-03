@@ -3,7 +3,7 @@
 @section('content')
     <div class="card bg-base-300">
         <div class="card-body">
-            <form action="{{route('posts.store')}}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <fieldset class="fieldset">
                     <legend class="fieldset-legend">Title</legend>
@@ -23,10 +23,24 @@
                 </fieldset>
                 <fieldset class="fieldset">
                     <legend class="fieldset-legend">Images</legend>
-                    <input name="images[]" multiple type="file" accept="image/*" class="file-input w-full @error('images.*') file-input-error @enderror" />
+                    <input name="images[]" multiple type="file" accept="image/*"
+                        class="file-input w-full @error('images.*') file-input-error @enderror" />
                     @error('images.*')
                         <p class="label text-error">{{ $message }}</p>
                     @enderror
+                </fieldset>
+
+                <fieldset class="fieldset mb-4">
+                    <legend class="fieldset-legend">Tags</legend>
+                    <div class="flex flex-wrap gap-2">
+                        @foreach ($tags as $tag)
+                            <label class="cursor-pointer flex items-center gap-2">
+                                <input type="checkbox" name="tags[]" value="{{ $tag->id }}"
+                                    class="checkbox checkbox-primary" />
+                                <span>{{ $tag->name }}</span>
+                            </label>
+                        @endforeach
+                    </div>
                 </fieldset>
                 <button class="btn btn-primary">Create</button>
             </form>

@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Image;
+use App\Models\Tag;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
@@ -26,7 +27,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        $tags = Tag::all();
+        return view('posts.create', compact('tags'));
     }
 
     /**
@@ -46,6 +48,7 @@ class PostController extends Controller
                 $image->save();
             }
         }
+        $post->tags()->sync($request->tags ?? []);
 
         return redirect()->route('posts.index');
     }
@@ -63,7 +66,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('posts.edit', compact('post'));
+        $tags = Tag::all();
+        return view('posts.edit', compact('post', 'tags'));
     }
 
     /**
@@ -77,6 +81,7 @@ class PostController extends Controller
         // $post->fill($request->validated());
         // $post->save();
         $post->update($request->validated());
+        $post->tags()->sync($request->tags ?? []);
         return redirect()->route('posts.index');
     }
 

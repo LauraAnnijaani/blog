@@ -29,9 +29,13 @@
                     <p class="text-neutral-content"><b>Likes:</b> {{ $post->likes_count }}</p>
                     <div class="text-neutral-content flex gap-3">
                         <b>Category:</b>
-                        <a href="{{route('category', ['category' => $post->category])}}">
-                            <div class="badge badge-info">{{$post->category->name}}</div>
-                        </a>
+                        @if ($post->category)
+                            <a href="{{ route('category', $post->category->id) }}">
+                                {{ $post->category->name }}
+                                                        <div class="badge badge-info">{{ $post->category->name }}</div>
+                            </a>
+                        @endif
+
                     </div>
                     <div class="flex flex-wrap gap-1">
                         @foreach ($post->tags as $tag)

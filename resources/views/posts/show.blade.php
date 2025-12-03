@@ -14,7 +14,15 @@
                     {!! $post->body !!}
                 </div>
             </fieldset>
-
+            @if ($post->tags->count())
+                <div class="mt-4 flex flex-wrap gap-2">
+                    @foreach ($post->tags as $tag)
+                        <a href="{{ route('tag', $tag->id) }}" class="badge badge-primary badge-outline">
+                            {{ $tag->name }}
+                        </a>
+                    @endforeach
+                </div>
+            @endif
             <div class="mt-4 flex gap-2">
                 <form action="{{ route('posts.destroy', $post) }}" method="POST">
                     @csrf

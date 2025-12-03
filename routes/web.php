@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TagController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
@@ -25,6 +26,7 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
     Route::resource('/admin/posts', PostController::class);
+    Route::resource('/admin/tags', TagController::class);
 
     Route::post('/post/{post}/like', [LikeController::class, 'store'])->name('post.like');
 
